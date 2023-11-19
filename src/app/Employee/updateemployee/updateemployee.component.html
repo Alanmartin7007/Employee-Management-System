@@ -1,0 +1,53 @@
+<h1>Update Employee</h1>
+<div class="row">
+    <div class="col">
+        <form style="padding-left: 14%;padding-right: 14%;"[formGroup]="form" (ngSubmit)="submit()">
+            <div class="row" [hidden]="true">
+                <div class="col">
+                    <label for="id">Id</label>
+            <input type="number" name="id" id="id" formControlName="id" >
+                </div>
+            </div>
+           
+            <div class="form-floating mb-3">
+                <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter your name">
+                <label for="name">Enter your name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email">
+                <label for="email">Enter your Email</label>
+              </div>
+              <div class="form-floating mb-3">
+                <select formControlName="gender" class="form-select text-light" aria-label="Default select example" [hidden]="true">
+                    <option value=" " selected>Select the Gender</option>
+                    <option value=1>Female</option>
+                    <option value="2">Male</option>
+                  </select>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="mobileNo" type="number" class="form-control" id="mobile" placeholder="MobileNo">
+                <label for="mobile">Enter the Mobile No</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="dateOfBirth" type="date" class="form-control" id="date">
+                <label for="date">Enter the DOB</label>
+              </div>
+              <div class="form-floating mb-3">
+                <select formControlName="departmentId" class="form-select" aria-label="select">
+                    <option value="">Select the Department</option>
+                    <option *ngFor="let de of list" value="{{de.id}}">{{ de.name }}</option>
+                  </select>
+              </div>
+              <div class="form-floating mb-3">
+                <input formControlName="salary" type="number" class="form-control" id="salary" placeholder="salary">
+                <label for="salary">Enter the Salary</label>
+              </div>
+              <div class="row">
+                <div class="col">
+                    <input type="submit" value="Submit" class="btn btn-primary  mb-5">
+                </div>
+              </div>
+        </form>
+    </div>
+</div>
+ 

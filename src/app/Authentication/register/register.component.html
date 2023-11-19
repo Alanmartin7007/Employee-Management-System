@@ -1,0 +1,32 @@
+<h1 style="padding-top: 15%;display: inline-block;position: absolute; padding-left: 19%;">Register</h1>
+<div class="container" style="position: absolute;padding-right: 0%; padding-top: 3%;margin-top:10%;display: inline-block;padding-left: 50%;" >
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="regForm" (ngSubmit)="regEmp()">
+                <input type="number" name="id" id="id" formControlName="id" [hidden]="true">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="name" placeholder="userName" formControlName="userName">
+                    <label for="name">Enter the User Name</label>
+                    <div class="alert alert-danger mt-2" *ngIf="regForm.hasError('required','userName')&&(regForm.controls['userName'].touched||regForm.controls['userName'].dirty)">Name is required</div>
+                  </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email" formControlName="email" placeholder="email">
+                    <label for="email">Enter the Email address</label>
+                    <div class="alert alert-danger mt-2" *ngIf="regForm.hasError('required','email')&&(regForm.controls['email'].touched||regForm.controls['email'].dirty)">Email is required</div>
+                    <div class="alert alert-danger mt-2" *ngIf="regForm.hasError('email','email')&&(regForm.controls['email'].touched||regForm.controls['email'].dirty)">Email is required</div>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+                    <label for="floatingPassword">Enter the Password</label>
+                    <div class="alert alert-danger mt-2" *ngIf="regForm.hasError('required','password')&&(regForm.controls['password'].touched||regForm.controls['password'].dirty)">Password is required</div>
+                  </div>
+                  <input type="number" name="role" id="role" formControlName="role" [hidden]="true">
+                  <div class="form-floating mt-3">
+                    <input type="submit" class="btn btn-outline-primary" value="Register" style="margin-right: 3%;">
+                    <input type="button" value="Login" class="btn btn-outline-danger" [routerLink]="['']">
+                  </div>
+                  <input type="number" formControlName="role" [hidden]="true">
+            </form>
+        </div>
+    </div>
+</div>

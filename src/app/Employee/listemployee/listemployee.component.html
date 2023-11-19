@@ -1,0 +1,43 @@
+<h1>Employee List</h1>
+<div class="container ">
+<div class="row">
+                <div class=" col  m-5   col-md-4"  *ngFor= "let Employees of list">
+                    <div class="card"  >
+    
+                        <div class="card-body">
+                            <h5 class="card-title "><strong> Employee ID : {{Employees.id}}</strong></h5>
+                            <p class="card-text">Employee Name      : {{Employees.name}}</p>
+                            <p class="card-text">Employee DOB       : {{Employees.dateOfBirth|date}}</p>
+                            <p class="card-text">Employee Gender    : {{Employees.gender}}</p>
+                            <p class="card-text">Employee MobileNo  : {{Employees.mobileNo}}</p>
+                            <p class="card-text">Employee Email     : {{Employees.email}}</p>
+                            <p class="card-text">Employee Salary    : {{Employees.salary|currency:'INR'}}</p>
+                            <p class="card-text">Employee Department: {{Employees.department.name}}</p>
+                        </div>
+                        <div class="card-footer ">
+                            <button class="btn btn-primary " [routerLink]="['/employees/edit/',Employees.id]"> Edit</button>
+                            <button class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#deleteModal" 
+                            (click)="setDepartmentId(Employees.id)"> Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Confirm</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+    <p> Are you sure you want to delete this Department</p>
+    </div>
+    <div class="modal-footer" >
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >No</button>
+      <button type="button" class="btn btn-danger " data-bs-dismiss="modal" (click)="delete()">Yes</button>
+    </div>
+  </div>
+</div>
+

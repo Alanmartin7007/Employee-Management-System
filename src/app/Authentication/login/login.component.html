@@ -1,0 +1,24 @@
+<h1 style="padding-top: 15%;display: inline-block;position: absolute; padding-left: 19%;">Login</h1>
+<div class="container" style="position: absolute;padding-right: 0%; padding-top: 3%;margin-top:10%;display: inline-block;padding-left: 50%;" >
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="loginForm" (ngSubmit)="empLogin()">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" formControlName="email" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                    <div class="alert alert-danger mt-2" *ngIf="loginForm.hasError('required','email')&&(loginForm.controls['email'].touched||loginForm.controls['email'].dirty)">Email is required</div>
+                    <div class="alert alert-danger mt-2" *ngIf="loginForm.hasError('email','email')&&(loginForm.controls['email'].touched||loginForm.controls['email'].dirty)">Email is required</div>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" formControlName="password" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                    <div class="alert alert-danger mt-2" *ngIf="loginForm.hasError('required','password')&&(loginForm.controls['password'].touched||loginForm.controls['password'].dirty)">Password is required</div>
+                  </div>
+                  <div class="form-floating mt-3">
+                    <input type="submit" class="btn btn-outline-primary" value="Login" style="margin-right: 3%;">
+                    <input type="button" value="Register" class="btn btn-outline-danger" [routerLink]="['/register']">
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
