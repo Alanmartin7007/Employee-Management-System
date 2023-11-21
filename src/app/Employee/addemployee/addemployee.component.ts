@@ -17,7 +17,7 @@ export class AddemployeeComponent implements OnInit {
     Listdept!: Department[];
     maleVal!: Gender;
     femaleVal!: Gender;
-    
+    genderValue=Gender;
     constructor(private empService: EmployeeService, private router: Router, private deptService: DepartmentService) { }
     ngOnInit(): void {
       this.maleVal = Gender.Male;
@@ -53,5 +53,7 @@ export class AddemployeeComponent implements OnInit {
         alert('Error')
       })
     }
-  
+    getGender(gender:number):string{
+      return gender===Gender.Male?'Male':'Female';
+     }
   }

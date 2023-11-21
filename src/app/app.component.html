@@ -1,7 +1,8 @@
-<h1 style="color:aqua;">SPERIDIAN TECHNOLOGIES</h1>
+<div class="app-container" style="background-color: #f0f0f0;">
+<h1 style="color: aqua; background-color: navy; padding: 10px;">SPERIDIAN TECHNOLOGIES</h1>
 
-<nav class="navbar navbar-expand navbar-light bg-light  "  >
-            <a class="navbar-brand " style="color:blue;">{{title}}</a>                    
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
+    <a class="navbar-brand" style="color: blue;">{{ title }}</a>                   
   <ul class="nav nav-pills" *ngIf="isloggedin()"  >
       
       <li >
@@ -25,4 +26,6 @@
     </li>
   </ul>
 </nav>
+
 <router-outlet></router-outlet>
+</div>

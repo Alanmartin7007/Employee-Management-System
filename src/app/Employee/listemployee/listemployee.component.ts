@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
+import { Gender } from '../gender';
 
 @Component({
   selector: 'app-listemployee',
@@ -31,7 +32,11 @@ delete() {
         console.log(err);
         alert('error');
       })}
-setDepartmentId(id: number) {
+setEmployeeId(id: number) {
   this.empid=id;
 }
+getGender(gender:number):string{
+  return gender===Gender.Male?'Male':'Female';
+ }
+   
 }

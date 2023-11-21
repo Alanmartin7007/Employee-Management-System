@@ -17,12 +17,17 @@
                 <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email">
                 <label for="email">Enter your Email</label>
               </div>
-              <div class="form-floating mb-3">
-                <select formControlName="gender" class="form-select text-light" aria-label="Default select example" [hidden]="true">
-                    <option value=" " selected>Select the Gender</option>
-                    <option value=1>Female</option>
-                    <option value="2">Male</option>
-                  </select>
+              <div class="form-control ">
+               
+                  <label for="gender" class="form-label">Gender:</label>
+              <input type="radio" name="gender" id="male"  [value]="genderValue.Male" formControlName="gender" checked>
+              <label for="male" class="form-label">Male</label>
+              <input type="radio" name="gender" id="female" [value]="genderValue.Female" formControlName="gender" >
+              <label for="female" class="form-label">Female</label>
+                  <div *ngIf="form.hasError('required','gender')&&(form.controls['gender'].touched||
+                  form.controls['gender'].dirty)" class="alert alert-danger " role="alert">
+                      Gender is Required</div>
+             
               </div>
               <div class="form-floating mb-3">
                 <input formControlName="mobileNo" type="number" class="form-control" id="mobile" placeholder="MobileNo">
