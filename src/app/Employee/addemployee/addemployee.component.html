@@ -12,10 +12,17 @@
             <div class="form-floating mb-3">
                 <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter your name">
                 <label for="name">Enter your name</label>
+                <div *ngIf= "form.hasError('required','name')&&(form.controls['name'].touched || form.controls['name'].dirty)" class="alert  alert-danger " role="alert">
+                  Name is required</div>
+              
               </div>
               <div class="form-floating mb-3">
                 <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email">
                 <label for="email">Enter your Email</label>
+                <div *ngIf="form.get('email')?.errors?.['invalidEmail'] && form.get('email')?.touched" class="alert alert-danger" role="alert">
+                  Email must end with .com
+                </div>
+                
               </div>
               <div class="form-group" >
               <label for="gender" class="form-label">Gender:</label>
@@ -28,14 +35,24 @@
                       Gender is Required</div>
             </div>
              
-              <div class="form-floating mb-3">
-                <input formControlName="mobileNo" type="number" class="form-control" id="mobile" placeholder="MobileNo">
-                <label for="mobile">Enter the Mobile No</label>
-              </div>
+            <div class="form-floating mb-3">
+              <input formControlName="mobileNo" type="number" class="form-control" id="mobile" placeholder="MobileNo">
+              <label for="mobile">Enter the Mobile No</label>
+          
+                <div *ngIf= "form.hasError('required','name')&&(form.controls['name'].touched || form.controls['name'].dirty )|| form.get('mobileNo')?.invalid && form.get('mobileNo')?.touched" class="invalid-feedback" class="alert  alert-danger " role="alert">
+                  Mobile number must be exactly 10 digits
+                </div>
+                
+              
+            </div>
               <div class="form-floating mb-3">
                 <input formControlName="dateOfBirth" type="date" class="form-control" id="date">
                 <label for="date">Enter the DOB</label>
-              </div>
+                <div *ngIf="form.get('dateOfBirth')?.errors?.['pastDate'] && form.get('dateOfBirth')?.touched" class="alert alert-danger" role="alert">
+                  Date must be in the past
+                </div>
+                </div>
+
               <div class="form-floating mb-3">
                 <select formControlName="departmentId" class="form-select" aria-label="select">
                     <option value="">Select the Department</option>
@@ -45,6 +62,9 @@
               <div class="form-floating mb-3">
                 <input formControlName="salary" type="number" class="form-control" id="salary" placeholder="salary">
                 <label for="salary">Enter the Salary</label>
+                <div *ngIf="form.get('salary')?.errors?.['min'] && form.get('salary')?.touched" class="alert alert-danger" role="alert">
+                  Minimum salary is 10000
+                </div>
               </div>
               <div class="row">
                 <div class="col">

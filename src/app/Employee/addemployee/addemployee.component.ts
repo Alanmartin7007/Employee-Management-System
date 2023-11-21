@@ -18,6 +18,7 @@ export class AddemployeeComponent implements OnInit {
     maleVal!: Gender;
     femaleVal!: Gender;
     genderValue=Gender;
+
     constructor(private empService: EmployeeService, private router: Router, private deptService: DepartmentService) { }
     ngOnInit(): void {
       this.maleVal = Gender.Male;
@@ -25,11 +26,11 @@ export class AddemployeeComponent implements OnInit {
       this.form = new FormGroup({
         id: new FormControl(0),
         name: new FormControl('', Validators.required),
-        dateOfBirth: new FormControl('', Validators.required),
+        dateOfBirth: new FormControl('', [Validators.required, this.pastDateValidator.bind(this)]),
         gender: new FormControl(this.maleVal, Validators.required),
-        mobileNo: new FormControl('', Validators.required),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        salary: new FormControl('', Validators.required),
+        mobileNo: new FormControl('', [Validators.required,this.mobileNumberValidator.bind(this)]),
+        email: new FormControl('', [Validators.required, Validators.email, this.emailValidator]),
+        salary: new FormControl('', [Validators.required,Validators.min(10000)]),
         departmentId: new FormControl('', Validators.required),
       })
       this.deptService.getList().subscribe(result => {
@@ -40,6 +41,38 @@ export class AddemployeeComponent implements OnInit {
       })
   
     }
+    mobileNumberValidator(control: FormControl): { [key: string]: any } | null {
+      const validLength = 10; // Define the valid length for the mobile number
+      
+      if (control.value && control.value.toString().length !== validLength) {
+        return { 'invalidMobileNumber': true }; // Return an error if the length is invalid
+      }
+      
+      return null; // Return null if the validation passes
+    }
+    
+    pastDateValidator(control: FormControl): { [key: string]: any } | null {
+      const selectedDate = new Date(control.value);
+      const currentDate = new Date();
+    
+      if (selectedDate >= currentDate) {
+        return { 'pastDate': true };
+      }
+      
+      return null;
+    }
+    
+    
+    emailValidator(control: FormControl): { [key: string]: any } | null {
+      const email = control.value as string;
+  
+      if (email && !email.toLowerCase().endsWith('.com')) {
+        return { 'invalidEmail': true };
+      }
+  
+      return null;
+    }
+  
     submit() {
       console.log(this.form.value)
   
